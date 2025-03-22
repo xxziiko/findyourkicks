@@ -1,10 +1,10 @@
 'use client';
 
-import { Button, CheckBox, Image, QuantityController } from '@/components';
+import { NoListData, ProductInfo } from '@/app/(checkout)/_features';
+import { Button, CheckBox, QuantityController } from '@/components';
 import type { CartItem, QuantityHandlerType } from '@/lib/types';
 import { memo } from 'react';
 import styles from './CartList.module.scss';
-import NoListData from './NoListData';
 
 export type CartListProps = {
   cartItems: CartItem[];
@@ -27,6 +27,7 @@ type ItemHandlers = {
   onToggle: (e: React.ChangeEvent<HTMLInputElement>, cartId: string) => void;
   onQuantityChange: QuantityHandlerType;
   onDelete: (id: string) => void;
+  onNextStep: () => void;
 };
 
 export default function CartList(props: CartListProps) {
@@ -71,6 +72,7 @@ function Item({
   onQuantityChange,
   onDelete,
   onProductInfo,
+  onNextStep,
 }: ItemProps) {
   return (
     <li className={styles.item}>
@@ -82,15 +84,9 @@ function Item({
       <button
         type="button"
         onClick={() => onProductInfo(item)}
-        className={styles.item__info_box}
+        className={styles.item__info}
       >
-        <Image src={item.image} alt="product" width="8rem" height="7rem" />
-
-        <div className={styles.item__info}>
-          <p>{item.title.replace(/(<b>|<\/b>)/g, '')}</p>
-          <p>{item.size}</p>
-          <p>{item.price.toLocaleString()}원</p>
-        </div>
+        <ProductInfo item={item} type="cart" />
       </button>
 
       <div className={styles.item__quantity}>
@@ -107,11 +103,15 @@ function Item({
       </div>
 
       <div className={styles.item__buttons}>
-        <Button text="주문하기" onClick={() => {}} />
+        <Button
+          text="주문하기"
+          onClick={() => {}}
+          // onClick={onNextStep}
+        />
         <Button
           text="삭제하기"
           onClick={() => onDelete(item.cartId)}
-          variant="white"
+          variant="lined--r"
         />
       </div>
     </li>

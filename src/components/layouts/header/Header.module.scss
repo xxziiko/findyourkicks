@@ -1,13 +1,14 @@
 @mixin tab-base {
-  font-size: 0.875rem;
+  font-size: $font-sm;
   font-weight: 500;
   cursor: pointer;
 }
 
 .header {
-  @include mixins.flex-between;
-  @include mixins.layout-root;
-  @include mixins.sticky-header;
+  @include flex-between;
+  @include layout-root;
+  @include sticky-header;
+  align-items: center;
   height: 7rem; // h-20
 
   &__logo {

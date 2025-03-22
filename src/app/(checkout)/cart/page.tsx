@@ -1,11 +1,12 @@
 'use client';
 
+import { useCart } from '@/app/(checkout)/cart/_features';
 import dynamic from 'next/dynamic';
-import useCart from './useCart';
 
-const CartView = dynamic(() => import('./CartView'), { ssr: false });
+// TODO: 서버 구축 시 삭제
+const CartView = dynamic(() => import('./_features/CartView'), { ssr: false });
 
-export default function Cart() {
+export default function CartPage() {
   const {
     cartItems,
     checkedItems,
@@ -17,6 +18,7 @@ export default function Cart() {
     handleDelete,
     handleToggle,
     handleProductInfo,
+    handleNextStep,
   } = useCart();
 
   const props = {
@@ -30,6 +32,7 @@ export default function Cart() {
     onDelete: handleDelete,
     onToggle: handleToggle,
     onProductInfo: handleProductInfo,
+    onNextStep: handleNextStep,
   };
 
   return <CartView {...props} />;
