@@ -32,7 +32,7 @@
 <br/>
 
 #### 보러가기
-🔗 https://findyourkicks-shop.vercel.app/
+🔗 https://findyourkicks.vercel.app/
 
 #### 작업기간
 2025.02 ~ 2025.05
